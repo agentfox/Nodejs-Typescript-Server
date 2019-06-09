@@ -1,0 +1,36 @@
+{
+  "name": "nodejs-typescript-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "tsc && node dist/app.js",
+    "test": "mocha --require ts-node/register test/**/*.ts",
+    "dev": "ts-node-dev — respawn — transpileOnly ./src/index.ts",
+    "prod": "tsc && node ./dist/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/agentfox/Nodejs-Typescript-Server.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/agentfox/Nodejs-Typescript-Server/issues"
+  },
+  "homepage": "https://github.com/agentfox/Nodejs-Typescript-Server#readme",
+  "devDependencies": {
+    "@types/chai": "^4.1.7",
+    "@types/express": "^4.17.0",
+    "@types/mocha": "^5.2.7",
+    "@typescript-eslint/eslint-plugin": "^1.9.0",
+    "@typescript-eslint/parser": "^1.9.0",
+    "eslint": "^5.16.0",
+    "ts-node": "^8.2.0",
+    "typescript": "^3.5.1"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
