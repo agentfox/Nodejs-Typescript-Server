@@ -1,15 +1,34 @@
-import express from "express";
+import * as  express from "express";
+import * as bodyParser from "body-parser";
+import * as mongoose from 'mongoose';
+import { ContactRoutes } from "./routes/cmrRoute";
+import { TodoRoutes } from "./routes/todoRoute";
+import { UserRoutes } from "./routes/userRoute";
+class App {
+    public mongoUrl: string = 'mongodb://localhost:27017/tsnode';
+    public app: express.Application;
+    public routePrv: ContactRoutes = new ContactRoutes();
+    public routeTodo: TodoRoutes = new TodoRoutes();
+    public routeUser: UserRoutes = new UserRoutes();
+    constructor() {
+        this.app = express();
+        this.config();
+        this.routePrv.routes(this.app);
+        this.routeTodo.routes(this.app);
+        this.routeUser.routes(this.app);
+        this.mongoSetup();      
+    }
+    private mongoSetup(): void{
+        mongoose.connect(this.mongoUrl, { useNewUrlParser: true });   
+    }
 
-const app = express();
-const port = 3000;
-let mm :String;
-app.get("/", (req, res) => {
-    mm = 'ssk';
-  res.send(`The sedulous hyena ate the antelope!${mm}`);
-});
-app.listen(port, (err) => {
-  if (err) {
-    return console.error(err);
-  }
-  return console.log(`server is listening on ${port}`);
-});
+    private config(): void{
+        // support application/json type post data
+        this.app.use(bodyParser.json());
+        //support application/x-www-form-urlencoded post data
+        this.app.use(bodyParser.urlencoded({ extended: false }));
+    }
+
+}
+
+export default new App().app;

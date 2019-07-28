@@ -14,7 +14,7 @@
       /* Module Resolution Options */
       "moduleResolution": "node",
       "baseUrl": "./src",
-      "esModuleInterop": true
+      "esModuleInterop": false
     },
     "lib": ["es2015"],
     "files": [
