@@ -1,5 +1,5 @@
 import * as mongoose from 'mongoose';
-import { UserSchema, IUser } from '../models/userModel';
+import { UserSchema, IUser } from './userModel';
 import { Request, Response } from 'express';
 import * as bcrypt from 'bcrypt';
 import * as jwt from 'jsonwebtoken';

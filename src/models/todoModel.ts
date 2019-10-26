@@ -24,7 +24,7 @@ export const TodoSchema = new Schema({
     },
     owner: { 
         type: Schema.Types.ObjectId,
-        ref: 'User'
+        ref: 'User' 
     },
     created_date: {
         type: Date,

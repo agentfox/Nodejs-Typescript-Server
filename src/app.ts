@@ -4,6 +4,7 @@ import * as mongoose from 'mongoose';
 import { ContactRoutes } from "./routes/cmrRoute";
 import { TodoRoutes } from "./routes/todoRoute";
 import { UserRoutes } from "./routes/userRoute";
+import { verifyUser } from "./controllers/userController";
 class App {
     public mongoUrl: string = 'mongodb://localhost:27017/tsnode';
     public app: express.Application;
@@ -27,6 +28,8 @@ class App {
         this.app.use(bodyParser.json());
         //support application/x-www-form-urlencoded post data
         this.app.use(bodyParser.urlencoded({ extended: false }));
+        // verify user
+        this.app.use(verifyUser)
     }
 
 }

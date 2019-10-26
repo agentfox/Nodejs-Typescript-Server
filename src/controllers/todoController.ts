@@ -1,11 +1,13 @@
 import * as mongoose from 'mongoose';
 import { TodoSchema, ITodo } from '../models/todoModel';
+import { IGetUserAuthInfoRequest } from "./userController";
 import { Request, Response } from 'express';
 
 const Todo = mongoose.model<ITodo>('Todo', TodoSchema);
 export class TodoController {
-    public addNewTodo (req: Request, res: Response) {           
-        let newTodo = new Todo(req.body);
+    public addNewTodo (req: IGetUserAuthInfoRequest, res: Response) {
+        const todoInfo = {...req.body, owner: req.user._id }          
+        const newTodo = new Todo(todoInfo);
         newTodo.save((err, td) => {
             if(err){
                 res.send(err);
